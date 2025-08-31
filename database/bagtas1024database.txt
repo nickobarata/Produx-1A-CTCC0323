@@ -17,3 +17,4 @@ Camera,Electronics,22000,27000,13
 Keyboard,Accessories,1200,1600,65
 Rice,Food,35,45,900
 Smartphone,Electronics,13000,16000,45
+Burger,Food,50,75,30
