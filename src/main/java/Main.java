@@ -16,6 +16,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Arc2D;
 import java.io.*;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -151,7 +152,7 @@ public class Main implements ActionListener, ListSelectionListener {
         panelBackground.setBounds(0, 0, WIDTH, HEIGHT);
         
         // background image
-        ImageIcon bgImageFile = new ImageIcon("images/background_login.jpg");
+        ImageIcon bgImageFile = new ImageIcon("images\\background_login.jpg");
         Image bgImage = bgImageFile.getImage();
         Image scaledImage = bgImage.getScaledInstance(WIDTH, HEIGHT, Image.SCALE_SMOOTH);
         ImageIcon background = new ImageIcon(scaledImage);
@@ -705,24 +706,26 @@ public class Main implements ActionListener, ListSelectionListener {
         panelAccount.add(labelCompanyEmail);
         
         // profile icon
-        ImageIcon profImageFile = new ImageIcon(getClass().getResource("images/bagtas_profile.png"));
-        Image profImage = profImageFile.getImage();
-        Image scaledImg = profImage.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-        ImageIcon profIcon = new ImageIcon(scaledImg);
-        JLabel profHandle = new JLabel(profIcon);
-        profHandle.setBounds(330, 50, 60, 60);
-        panelAccount.add(profHandle);
-        
-        // background image
-        ImageIcon bgImageFile = new ImageIcon(getClass().getResource("images/account_background.jpg"));
-        Image bgImage = bgImageFile.getImage();
-        Image scaledImage = bgImage.getScaledInstance(720, 550, Image.SCALE_SMOOTH);
-        ImageIcon background = new ImageIcon(scaledImage);
-        JLabel bgHandle = new JLabel(background);
-        bgHandle.setBounds(0, 0, 720, 550);
-        panelAccount.add(bgHandle);
-        
-        
+        URL profUrl = getClass().getResource("images/account_background.jpg");
+        if (profUrl != null) {
+            ImageIcon profImageFile = new ImageIcon(profUrl);
+            Image profImage = profImageFile.getImage();
+            Image scaledImg = profImage.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+            ImageIcon profIcon = new ImageIcon(scaledImg);
+            JLabel profHandle = new JLabel(profIcon);
+            profHandle.setBounds(330, 50, 60, 60);
+            panelAccount.add(profHandle);
+
+            // background image
+            Image bgImage = profImageFile.getImage();
+            Image scaledImage = bgImage.getScaledInstance(720, 550, Image.SCALE_SMOOTH);
+            ImageIcon background = new ImageIcon(scaledImage);
+            JLabel bgHandle = new JLabel(background);
+            bgHandle.setBounds(0, 0, 720, 550);
+            panelAccount.add(bgHandle);
+        } else {
+            System.out.println("Image not found: images/account_background.jpg");
+        }
         
     }
     
